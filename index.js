@@ -142,7 +142,7 @@ export default class VideoPlayer extends React.Component {
       fontSize: 12,
     },
     // Callbacks
-    playbackCallback: () => {},
+    playbackCallback: () => { },
     errorCallback: error => {
       console.log('Error: ', error.message, error.type, error.obj);
     },
@@ -315,7 +315,7 @@ export default class VideoPlayer extends React.Component {
             this._setPlaybackState(PLAYBACK_STATES.ERROR);
             this.setState({
               error:
-                'You are probably offline. Please make sure you are connected to the Internet to watch this video',
+              'You are probably offline. Please make sure you are connected to the Internet to watch this video',
             });
           } else {
             this._setPlaybackState(
@@ -530,7 +530,7 @@ export default class VideoPlayer extends React.Component {
   };
 
   render() {
-    const videoWidth = Dimensions.get('window').width;
+    const videoWidth = Dimensions.get('window').width * 96 / 100;
     const videoHeight = videoWidth * (9 / 16);
     const centeredContentWidth = 60;
 
@@ -567,12 +567,12 @@ export default class VideoPlayer extends React.Component {
           style={
             center
               ? {
-                  backgroundColor: 'rgba(0, 0, 0, 0.4)',
-                  justifyContent: 'center',
-                  width: centeredContentWidth,
-                  height: centeredContentWidth,
-                  borderRadius: centeredContentWidth,
-                }
+                backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                justifyContent: 'center',
+                width: centeredContentWidth,
+                height: centeredContentWidth,
+                borderRadius: centeredContentWidth,
+              }
               : {}
           }>
           {children}
@@ -635,7 +635,7 @@ export default class VideoPlayer extends React.Component {
           {/* Spinner */}
           {((this.state.playbackState == PLAYBACK_STATES.BUFFERING &&
             Date.now() - this.state.lastPlaybackStateUpdate >
-              BUFFERING_SHOW_DELAY) ||
+            BUFFERING_SHOW_DELAY) ||
             this.state.playbackState == PLAYBACK_STATES.LOADING) &&
             <CenteredView>
               <Spinner />
